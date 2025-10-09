@@ -148,6 +148,18 @@ utility.setupMinimap = function()
     end
 end
 
+-- Removes the default health and armor bars from the HUD
+utility.removeHealthArmorBars = CreateThread(function()
+    local minimap = RequestScaleformMovie("minimap")
+    SetRadarBigmapEnabled(false, false)
+    while true do
+        Wait(0)
+        BeginScaleformMovieMethod(minimap, "SETUP_HEALTH_ARMOUR")
+        ScaleformMovieMethodAddParamInt(3)
+        EndScaleformMovieMethod()
+    end
+end)
+
 ---@param coords vector3
 ---@return boolean
 ---@return table
