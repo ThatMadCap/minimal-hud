@@ -2,12 +2,14 @@ fx_version("cerulean")
 game("gta5")
 
 name("minimal-hud")
-author("vipex <discord:vipex.v>")
+author("MadCap <discord:https://discord.gg/dTNWpmPGyc>")
+-- author("vipex <discord:vipex.v>")
 version("2.42.8")
 description ("Minimalistic FiveM HUD")
 repository("https://github.com/ThatMadCap/minimal-hud")
 
 shared_scripts({
+    "@ox_lib/init.lua",
     "require.lua",
     "init.lua",
 })
