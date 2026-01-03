@@ -26,6 +26,7 @@
 </p>
 
 <p align="center">
+  <a href="#dependencies">Dependencies</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#development-setup">Development Setup</a> •
   <a href="#contributing">Contributing</a> •
@@ -36,8 +37,13 @@
 
 <p align="center">The <a href="https://github.com/vipexv/minimal-hud">original repository</a> has now been archived. This fork will continue to be maintained for the FiveM community.</p>
 
+## Dependencies
+
+- [ox_lib](https://github.com/CommunityOx/ox_lib/releases/tag/v3.32.2)
+
 ## How to Use
 
+- Ensure you have the dependencies installed.
 - [Download the latest release](https://github.com/thatmadcap/minimal-hud/releases/latest), add to your resources, ensure in your `server.cfg`.
 - Don't forget to set a framework in `config/shared.lua` and any custom logic into `config/functions.lua`.
 - If using the built-in seatbelt logic, add `setr game_enableFlyThroughWindscreen true` to your `server.cfg`.
