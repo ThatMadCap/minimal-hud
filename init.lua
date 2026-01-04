@@ -70,7 +70,7 @@ local sv_utils = lib.require("modules.utility.server.main")
 
 CreateThread(function()
     if not sv_utils.isInterfaceCompiled() then
-        print("^1UI not compiled, either compile the UI or download a compiled version here: ^0https://github.com/ThatMadCap/minimal-hud/releases/latest")
+        lib.print.error("^1UI not compiled, either compile the UI or download a compiled version here: ^0https://github.com/ThatMadCap/minimal-hud/releases/latest")
     end
 
     assert(GetResourceState('ox_lib') == 'started', 'ox_lib is not started. Please ensure ox_lib is installed and started before minimal-hud.')
