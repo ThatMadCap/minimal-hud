@@ -4,7 +4,6 @@ if not IsDuplicityVersion() then
     local vehicleStatusClass = require("modules.threads.client.vehicle_status")
     local seatbeltLogicClass = require("modules.seatbelt.client")
     local utility = require("modules.utility.shared.main")
-    local logger = require("modules.utility.shared.logger")
     local interface = require("modules.interface.client")
 
     local seatbeltLogic = seatbeltLogicClass.new()
@@ -19,13 +18,13 @@ if not IsDuplicityVersion() then
     exports("toggleHud", function(state)
         interface:toggle(state or nil)
         DisplayRadar(state)
-        logger.info("(exports:toggleHud) Toggled HUD to state: ", state)
+        lib.print.debug("(exports:toggleHud) Toggled HUD to state: ", state)
     end)
 
     local function toggleMap(state)
         _G.minimapVisible = state
         DisplayRadar(state)
-        logger.info("(toggleMap) Toggled map to state: ", state)
+        lib.print.debug("(toggleMap) Toggled map to state: ", state)
     end
 
     exports("toggleMap", toggleMap)
@@ -34,7 +33,6 @@ if not IsDuplicityVersion() then
         interface:toggle()
     end, false)
 
-    -- Toggle HUD when pause menu is active
     local isPauseMenuOpen = false
     CreateThread(function()
         while true do

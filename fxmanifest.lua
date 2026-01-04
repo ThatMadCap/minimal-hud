@@ -25,7 +25,6 @@ files({
     "config/*.lua",
     "config/functions.lua",
     "modules/interface/client.lua",
-    "modules/utility/shared/logger.lua",
     "modules/utility/shared/main.lua",
     "modules/seatbelt/client.lua",
     "modules/frameworks/**/*.lua",
