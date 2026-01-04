@@ -1,9 +1,8 @@
 ---@diagnostic disable: cast-local-type
-local logger = require("modules.utility.shared.logger")
-local interface = require("modules.interface.client")
-local config = require("config.shared")
-local utility = require("modules.utility.shared.main")
-local sharedFunctions = require("config.functions")
+local interface = lib.require("modules.interface.client")
+local config = lib.require("config.shared")
+local utility = lib.require("modules.utility.shared.main")
+local sharedFunctions = lib.require("config.functions")
 
 local PlayerStatusThread = {}
 PlayerStatusThread.__index = PlayerStatusThread
@@ -31,7 +30,7 @@ end
 
 ---@param value boolean
 function PlayerStatusThread:setIsVehicleThreadRunning(value)
-    logger.verbose("(PlayerStatusThread:setIsVehicleThreadRunning) Setting: ", value)
+    lib.print.verbose("(PlayerStatusThread:setIsVehicleThreadRunning) Setting: ", value)
     self.isVehicleThreadRunning = value
 end
 
@@ -96,7 +95,7 @@ function PlayerStatusThread:start(vehicleStatusThread, seatbeltLogic, framework)
                 if not self:getIsVehicleThreadRunning() and vehicleStatusThread then
                     vehicleStatusThread:start()
                     DisplayRadar(true)
-                    logger.verbose("(playerStatus) (vehicleStatusThread) Vehicle status thread started.")
+                    lib.print.verbose("(playerStatus) (vehicleStatusThread) Vehicle status thread started.")
                 else
                     DisplayRadar(true)
                 end

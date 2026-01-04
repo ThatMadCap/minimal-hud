@@ -1,12 +1,11 @@
-local config = require("config.shared")
-local logger = require("modules.utility.shared.logger")
+local config = lib.require("config.shared")
 
 local SeatbeltLogic = {}
 SeatbeltLogic.__index = SeatbeltLogic
 
 function SeatbeltLogic.new()
     if not config.useBuiltInSeatbeltLogic then
-        logger.info("(SeatbeltLogic.new) Config.useBuiltInSeatbeltLogic is disabled.")
+        lib.print.debug("(SeatbeltLogic.new) Config.useBuiltInSeatbeltLogic is disabled.")
         return
     end
 
@@ -23,11 +22,11 @@ function SeatbeltLogic.new()
         local ped = PlayerPedId()
 
         if not IsPedInAnyVehicle(ped, false) or IsPedOnAnyBike(ped) then
-            return logger.info("(SeatbeltLogic:toggle) Seatbelt is not available either due to the fact that the player is not in a vehicle or on a bike.")
+            return lib.print.debug("(SeatbeltLogic:toggle) Seatbelt is not available either due to the fact that the player is not in a vehicle or on a bike.")
         end
 
         self:toggle(not self.seatbeltState)
-        logger.info("(commands:toggleSeatbelt) Toggled seatbelt.")
+        lib.print.debug("(commands:toggleSeatbelt) Toggled seatbelt.")
     end, false)
 
     SetPedConfigFlag(PlayerPedId(), 32, true)
@@ -52,17 +51,17 @@ end
 
 function SeatbeltLogic:disableVehicleExitControlThread()
     Citizen.CreateThread(function()
-        logger.info("(SeatbeltLogic:disableVehicleExitControlThread) Thread enabled.")
+        lib.print.debug("(SeatbeltLogic:disableVehicleExitControlThread) Thread enabled.")
         while self.seatbeltState do
             DisableControlAction(0, 75, true) -- 75: INPUT_VEH_EXIT
             Wait(0)
         end
-        logger.info("(SeatbeltLogic:disableVehicleExitControlThread) Thread disabled.")
+        lib.print.debug("(SeatbeltLogic:disableVehicleExitControlThread) Thread disabled.")
     end)
 end
 
 function SeatbeltLogic:isSeatbeltOn()
-    logger.info("(SeatbeltLogic:isSeatbeltOn) Returning: ", self.seatbeltState)
+    lib.print.debug("(SeatbeltLogic:isSeatbeltOn) Returning: ", self.seatbeltState)
 
     return self.seatbeltState
 end
