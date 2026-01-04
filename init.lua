@@ -75,5 +75,8 @@ CreateThread(function()
         print("^1UI not compiled, either compile the UI or download a compiled version here: ^0https://github.com/ThatMadCap/minimal-hud/releases/latest")
     end
 
+    assert(GetResourceState('ox_lib') == 'started', 'ox_lib is not started. Please ensure ox_lib is installed and started before minimal-hud.')
+    assert(lib.checkDependency('ox_lib', '3.27.0', true), 'Upgrade ox_lib to 3.27.0 or higher')
+
     sv_utils.versionCheck("ThatMadCap/minimal-hud")
 end)
