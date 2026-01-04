@@ -1,8 +1,8 @@
 {
   "name": "minimal-hud",
-  "author": "vipex",
+  "author": "MadCap",
   "private": true,
-  "version": "2.42.8",
+  "version": "3.42.8",
   "type": "module",
   "scripts": {
     "dev": "vite",
