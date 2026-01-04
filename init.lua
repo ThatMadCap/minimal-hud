@@ -8,7 +8,6 @@ local CreateThread = CreateThread
 local IsPauseMenuActive = IsPauseMenuActive
 local GetResourceState = GetResourceState
 local GetCurrentResourceName = GetCurrentResourceName
-local SetStreamedTextureDictAsNoLongerNeeded = SetStreamedTextureDictAsNoLongerNeeded
 
 if not IsDuplicityVersion() then
     local config = lib.require("config.shared")
