@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import CarHud from "./components/car-hud";
 import Compass from "./components/compass";
 import PlayerStatus from "./components/player-status";
+import MinimapPreview from "./components/minimap-preview";
 import { useSetMinimapState, type MinimapStateInterface } from "./states/minimap";
 import type { ConfigInterface } from "./types/config";
 import { debug, setDebugMode } from "./utils/debug";
@@ -61,6 +62,7 @@ export function App() {
 
   return (
     <>
+      <MinimapPreview />
       <PlayerStatus />
       <CarHud />
 

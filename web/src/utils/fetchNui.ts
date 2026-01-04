@@ -7,7 +7,7 @@ export async function fetchNui<T = any>(
 ): Promise<T> {
     if (isEnvBrowser()) {
         if (!mock) return await new Promise((resolve) => resolve);
-        await new Promise((resolve) => setTimeout(resolve, mock.delay));
+        await new Promise((resolve) => setTimeout(resolve, mock!.delay));
         return mock.data;
     }
 
