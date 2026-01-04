@@ -115,11 +115,7 @@ utility.setupMinimap = function()
         minimapOffset = ((defaultAspectRatio - aspectRatio) / 3.6) - 0.008
     end
 
-    RequestStreamedTextureDict("squaremap", false)
-
-    while not HasStreamedTextureDictLoaded("squaremap") do
-        Wait(100)
-    end
+    lib.requestStreamedTextureDict("squaremap")
 
     SetMinimapClipType(0)
     AddReplaceTexture("platform:/textures/graphics", "radarmasksm", "squaremap", "radarmasksm")
