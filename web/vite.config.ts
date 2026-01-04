@@ -5,7 +5,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [preact(), visualizer() as PluginOption],
+  plugins: [preact() as unknown as PluginOption, visualizer() as unknown as PluginOption],
   base: "./",
   build: {
     outDir: "../dist",
