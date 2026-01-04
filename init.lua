@@ -97,9 +97,3 @@ CreateThread(function()
         lib.print.info(('Skipping resource version check (resource renamed to "%s").'):format(resName))
     end
 end)
-
-AddEventHandler('onResourceStop', function(resourceName)
-    if resourceName ~= GetCurrentResourceName() then return end
-
-    SetStreamedTextureDictAsNoLongerNeeded("squaremap")
-end)
