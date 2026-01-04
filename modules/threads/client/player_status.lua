@@ -4,6 +4,8 @@ local config = lib.require("config.shared")
 local utility = lib.require("modules.utility.shared.main")
 local sharedFunctions = lib.require("config.functions")
 
+math = lib.math
+
 local PlayerStatusThread = {}
 PlayerStatusThread.__index = PlayerStatusThread
 
@@ -47,7 +49,7 @@ function PlayerStatusThread:start(vehicleStatusThread, seatbeltLogic, framework)
             local zone = GetLabelText(GetNameOfZone(coords.x, coords.y, coords.z))
 
             local camRot = GetGameplayCamRot(0)
-            local heading = utility.round(360.0 - ((camRot.z + 360.0) % 360.0))
+            local heading = math.round(360.0 - ((camRot.z + 360.0) % 360.0))
             local compass = " "
 
             local headingRanges = {

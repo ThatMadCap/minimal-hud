@@ -8,14 +8,6 @@ utility.convertRpmToPercentage = function(value)
     return math.max(0, math.min(percentage, 100))
 end
 
----@param num number
----@param numDecimalPlaces number?
----@return integer
-utility.round = function(num, numDecimalPlaces)
-    local mult = 10 ^ (numDecimalPlaces or 0)
-    return math.floor(num + 0.5 * mult)
-end
-
 utility.convertEngineHealthToPercentage = function(value)
     -- Engine health ranges from 1000 (perfect) to 0 (about to catch fire)
     -- Values below 0 are just shown as 0% since they're critically damaged
