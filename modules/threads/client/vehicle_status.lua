@@ -6,6 +6,29 @@ local config = lib.require("config.shared")
 local VehicleStatusThread = {}
 VehicleStatusThread.__index = VehicleStatusThread
 
+local math = (lib and lib.math) and lib.math or math
+local max = math.max
+local min = math.min
+local floor = math.floor
+local string = string
+local lower = string.lower
+local tostring = tostring
+local setmetatable = setmetatable
+local Wait = Wait
+local SetHudComponentPosition = SetHudComponentPosition
+local CreateThread = CreateThread
+local PlayerPedId = PlayerPedId
+local IsPedInAnyVehicle = IsPedInAnyVehicle
+local GetVehiclePedIsIn = GetVehiclePedIsIn
+local GetVehicleTypeRaw = GetVehicleTypeRaw
+local GetVehicleEngineHealth = GetVehicleEngineHealth
+local GetIsVehicleEngineRunning = GetIsVehicleEngineRunning
+local GetVehicleHighGear = GetVehicleHighGear
+local GetVehicleDashboardCurrentGear = GetVehicleDashboardCurrentGear
+local GetVehicleLightsState = GetVehicleLightsState
+local GetEntitySpeed = GetEntitySpeed
+local GetVehicleCurrentRpm = GetVehicleCurrentRpm
+
 function VehicleStatusThread.new(playerStatus, seatbeltLogic)
     local self = setmetatable({}, VehicleStatusThread)
     self.playerStatus = playerStatus
@@ -26,7 +49,7 @@ function GetNosLevel(veh)
     if noslevelraw == nil then
         noslevel = 0
     else
-        noslevel = math.floor(noslevelraw)
+        noslevel = floor(noslevelraw)
     end
 
     return noslevel
@@ -47,9 +70,9 @@ function VehicleStatusThread:start()
             local engineHealth = convertEngineHealthToPercentage(GetVehicleEngineHealth(vehicle))
             local noslevel = GetNosLevel(vehicle)
             local rawFuelValue = functions.getVehicleFuel(vehicle)
-            local fuelValue = math.max(0, math.min(rawFuelValue or 0, 100))
+            local fuelValue = max(0, min(rawFuelValue or 0, 100))
             local engineState = GetIsVehicleEngineRunning(vehicle)
-            local fuel = math.floor(fuelValue)
+            local fuel = floor(fuelValue)
             local highGear = GetVehicleHighGear(vehicle)
             local currentGear = GetVehicleDashboardCurrentGear()
             local newGears = highGear
@@ -71,7 +94,7 @@ function VehicleStatusThread:start()
             elseif currentGear == 1 then
                 gearString = "1"
             elseif currentGear > 1 then
-                gearString = tostring(math.floor(currentGear))
+                gearString = tostring(floor(currentGear))
             end
             -- Fix for vehicles that only have 1 gear
             if highGear == 1 then
@@ -80,11 +103,11 @@ function VehicleStatusThread:start()
 
             -- Handle MPH and KPH
             local speed
-            local normalizedSpeedUnit = string.lower(config.speedUnit)
+            local normalizedSpeedUnit = lower(config.speedUnit)
             if normalizedSpeedUnit == "kph" then
-                speed = math.floor(GetEntitySpeed(vehicle) * 3.6) -- Convert m/s to KPH
+                speed = floor(GetEntitySpeed(vehicle) * 3.6) -- Convert m/s to KPH
             elseif normalizedSpeedUnit == "mph" then
-                speed = math.floor(GetEntitySpeed(vehicle) * 2.236936) -- Convert m/s to MPH
+                speed = floor(GetEntitySpeed(vehicle) * 2.236936) -- Convert m/s to MPH
             else
                 lib.print.error("Invalid speed unit in config. Expected 'kph' or 'mph', but got:", config.speedUnit)
             end

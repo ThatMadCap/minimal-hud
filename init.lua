@@ -1,3 +1,15 @@
+local assert = assert
+local exports = exports
+local Wait = Wait
+local IsDuplicityVersion = IsDuplicityVersion
+local DisplayRadar = DisplayRadar
+local RegisterCommand = RegisterCommand
+local CreateThread = CreateThread
+local IsPauseMenuActive = IsPauseMenuActive
+local GetResourceState = GetResourceState
+local GetCurrentResourceName = GetCurrentResourceName
+local SetStreamedTextureDictAsNoLongerNeeded = SetStreamedTextureDictAsNoLongerNeeded
+
 if not IsDuplicityVersion() then
     local config = lib.require("config.shared")
     local playerStatusClass = lib.require("modules.threads.client.player_status")

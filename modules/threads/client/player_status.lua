@@ -4,10 +4,34 @@ local config = lib.require("config.shared")
 local utility = lib.require("modules.utility.shared.main")
 local sharedFunctions = lib.require("config.functions")
 
-math = lib.math
-
 local PlayerStatusThread = {}
 PlayerStatusThread.__index = PlayerStatusThread
+
+local lib = lib
+local math = (lib and lib.math) and lib.math or math
+local max = math.max
+local min = math.min
+local floor = math.floor
+local setmetatable = setmetatable
+local Wait = Wait
+local GetPlayerServerId = GetPlayerServerId
+local PlayerId = PlayerId
+local CreateThread = CreateThread
+local PlayerPedId = PlayerPedId
+local NetworkIsPlayerTalking = NetworkIsPlayerTalking
+local GetEntityCoords = GetEntityCoords
+local GetStreetNameFromHashKey = GetStreetNameFromHashKey
+local GetStreetNameAtCoord = GetStreetNameAtCoord
+local GetLabelText = GetLabelText
+local GetNameOfZone = GetNameOfZone
+local GetGameplayCamRot = GetGameplayCamRot
+local GetPedArmour = GetPedArmour
+local GetEntityMaxHealth = GetEntityMaxHealth
+local GetEntityHealth = GetEntityHealth
+local GetPlayerUnderwaterTimeRemaining = GetPlayerUnderwaterTimeRemaining
+local GetPlayerSprintStaminaRemaining = GetPlayerSprintStaminaRemaining
+local IsPedInAnyVehicle = IsPedInAnyVehicle
+local DisplayRadar = DisplayRadar
 
 ---@return table
 function PlayerStatusThread.new()
@@ -82,13 +106,13 @@ function PlayerStatusThread:start(vehicleStatusThread, seatbeltLogic, framework)
             local pedArmor = GetPedArmour(ped)
             local pedMaxHealth = GetEntityMaxHealth(ped)
             local pedCurrentHealth = GetEntityHealth(ped)
-            local pedHealthPercentage = math.floor(((pedCurrentHealth - 100) / (pedMaxHealth - 100)) * 100)
-            pedHealthPercentage = math.max(0, math.min(100, pedHealthPercentage))
+            local pedHealthPercentage = floor(((pedCurrentHealth - 100) / (pedMaxHealth - 100)) * 100)
+            pedHealthPercentage = max(0, min(100, pedHealthPercentage))
             local pedHunger = framework and framework:getPlayerHunger() or nil
             local pedThirst = framework and framework:getPlayerThirst() or nil
             local pedStress = framework and framework:getPlayerStress() or nil
-            local pedOxygen = math.floor(GetPlayerUnderwaterTimeRemaining(PlayerId()) * 10) or nil
-			local pedStamina = math.floor(100 - GetPlayerSprintStaminaRemaining(PlayerId())) or nil
+            local pedOxygen = floor(GetPlayerUnderwaterTimeRemaining(PlayerId()) * 10) or nil
+            local pedStamina = floor(100 - GetPlayerSprintStaminaRemaining(PlayerId())) or nil
 
             local isInVehicle = IsPedInAnyVehicle(ped, false)
             local isSeatbeltOn = config.useBuiltInSeatbeltLogic and seatbeltLogic.seatbeltState or sharedFunctions.isSeatbeltOn()

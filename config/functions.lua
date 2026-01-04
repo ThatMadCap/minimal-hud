@@ -1,3 +1,8 @@
+local exports = exports
+local GetResourceState = GetResourceState
+local Entity = Entity
+local GetVehicleFuelLevel = GetVehicleFuelLevel
+
 return {
 	isSeatbeltOn = function()
 		if GetResourceState('jim-mechanic') == 'started' then

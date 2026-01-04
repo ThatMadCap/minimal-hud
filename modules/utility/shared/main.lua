@@ -1,21 +1,46 @@
 local utility = {}
 local config = lib.require("config.shared")
 
+local math = (lib and lib.math) and lib.math or math
+local ceil = math.ceil
+local max = math.max
+local min = math.min
+local floor = math.floor
+local tostring = tostring
+local Wait = Wait
+local CreateThread = CreateThread
+local SetBigmapActive = SetBigmapActive
+local GetActiveScreenResolution = GetActiveScreenResolution
+local GetAspectRatio = GetAspectRatio
+local SetScriptGfxAlign = SetScriptGfxAlign
+local IsBigmapActive = IsBigmapActive
+local GetScriptGfxPosition = GetScriptGfxPosition
+local ResetScriptGfxAlign = ResetScriptGfxAlign
+local SetMinimapClipType = SetMinimapClipType
+local AddReplaceTexture = AddReplaceTexture
+local SetMinimapComponentPosition = SetMinimapComponentPosition
+local SetBlipAlpha = SetBlipAlpha
+local GetNorthRadarBlip = GetNorthRadarBlip
+local BeginScaleformMovieMethod = BeginScaleformMovieMethod
+local ScaleformMovieMethodAddParamInt = ScaleformMovieMethodAddParamInt
+local EndScaleformMovieMethod = EndScaleformMovieMethod
+local GetScreenCoordFromWorldCoord = GetScreenCoordFromWorldCoord
+
 ---@param value number
 ---@return number
 utility.convertRpmToPercentage = function(value)
-    local percentage = math.ceil(value * 10000 - 2001) / 80
-    return math.max(0, math.min(percentage, 100))
+    local percentage = ceil(value * 10000 - 2001) / 80
+    return max(0, min(percentage, 100))
 end
 
 utility.convertEngineHealthToPercentage = function(value)
     -- Engine health ranges from 1000 (perfect) to 0 (about to catch fire)
     -- Values below 0 are just shown as 0% since they're critically damaged
-    local clampedValue = math.max(0, math.min(value, 1000))
+    local clampedValue = max(0, min(value, 1000))
 
     local percentage = (clampedValue / 1000) * 100
 
-    percentage = math.floor(percentage + 0.5)
+    percentage = floor(percentage + 0.5)
 
     return percentage
 end

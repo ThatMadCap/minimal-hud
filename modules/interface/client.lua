@@ -1,3 +1,10 @@
+local setmetatable = setmetatable
+local assert = assert
+local type = type
+local pcall = pcall
+local SendNUIMessage = SendNUIMessage
+local RegisterNuiCallback = RegisterNuiCallback
+
 if not _G.interface then
     lib.print.debug("(modules/interface) _G.interface not found, creating first global instance")
 

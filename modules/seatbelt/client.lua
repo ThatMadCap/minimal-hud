@@ -1,5 +1,19 @@
 local config = lib.require("config.shared")
 
+local string = string
+local lower = string.lower
+local setmetatable = setmetatable
+local Wait = Wait
+local RegisterCommand = RegisterCommand
+local IsPedInAnyVehicle = IsPedInAnyVehicle
+local IsPedOnAnyBike = IsPedOnAnyBike
+local SetPedConfigFlag = SetPedConfigFlag
+local PlayerPedId = PlayerPedId
+local SetFlyThroughWindscreenParams = SetFlyThroughWindscreenParams
+local RegisterKeyMapping = RegisterKeyMapping
+local CreateThread = CreateThread
+local DisableControlAction = DisableControlAction
+
 local SeatbeltLogic = {}
 SeatbeltLogic.__index = SeatbeltLogic
 
@@ -12,7 +26,7 @@ function SeatbeltLogic.new()
     local self = setmetatable({}, SeatbeltLogic)
 
     self.seatbeltState = false
-    self.speedConversion = string.lower(config.speedUnit) == "mph" and 2.236936 or 3.6
+    self.speedConversion = lower(config.speedUnit) == "mph" and 2.236936 or 3.6
     self.ejectVelocity = config.ejectMinSpeed / self.speedConversion
     self.unknownEjectVelocity = 1.0
     self.unknownModifier = 17.0
@@ -50,7 +64,7 @@ function SeatbeltLogic:toggle(state)
 end
 
 function SeatbeltLogic:disableVehicleExitControlThread()
-    Citizen.CreateThread(function()
+    CreateThread(function()
         lib.print.debug("(SeatbeltLogic:disableVehicleExitControlThread) Thread enabled.")
         while self.seatbeltState do
             DisableControlAction(0, 75, true) -- 75: INPUT_VEH_EXIT

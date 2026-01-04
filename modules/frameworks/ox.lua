@@ -1,6 +1,9 @@
 local oxFramework = {}
 oxFramework.__index = oxFramework
 
+local setmetatable = setmetatable
+local AddEventHandler = AddEventHandler
+
 function oxFramework.new()
     local self = setmetatable({}, oxFramework)
     self.values = {}

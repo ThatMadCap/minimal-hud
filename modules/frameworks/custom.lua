@@ -1,6 +1,9 @@
 local customFramework = {}
 customFramework.__index = customFramework
 
+local setmetatable = setmetatable
+local AddEventHandler = AddEventHandler
+
 function customFramework.new()
     local self = setmetatable({}, customFramework)
     return self

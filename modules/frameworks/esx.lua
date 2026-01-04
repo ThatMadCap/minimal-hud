@@ -3,6 +3,9 @@ ESX = exports["es_extended"]:getSharedObject()
 local esxFramework = {}
 esxFramework.__index = esxFramework
 
+local setmetatable = setmetatable
+local AddEventHandler = AddEventHandler
+
 function esxFramework.new()
     local self = setmetatable({}, esxFramework)
     self.values = {}

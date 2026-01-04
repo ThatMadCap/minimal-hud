@@ -1,6 +1,9 @@
 local qbFramework = {}
 qbFramework.__index = qbFramework
 
+local setmetatable = setmetatable
+local AddEventHandler = AddEventHandler
+
 function qbFramework.new()
     local self = setmetatable({}, qbFramework)
     self.values = {}
