@@ -35,12 +35,17 @@ const PlayerStatus = () => {
     return playerState.hunger !== undefined || playerState.thirst !== undefined;
   }, [playerState]);
 
+  const bottomOffset = useMemo(() => {
+    const offset = window.innerHeight - minimap.top - minimap.height;
+    return Math.max(32, offset);
+  }, [minimap]);
+
   return (
     <>
       <div
         class="absolute items-end justify-center z-20 flex"
         style={{
-          top: minimap.top + "px",
+          bottom: bottomOffset + "px",
           left: minimap.left + "px",
           width: minimap.width * 2 + "px",
           height: minimap.height + "px",
