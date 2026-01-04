@@ -78,5 +78,12 @@ CreateThread(function()
     assert(GetResourceState('ox_lib') == 'started', 'ox_lib is not started. Please ensure ox_lib is installed and started before minimal-hud.')
     assert(lib.checkDependency('ox_lib', '3.27.0', true), 'Upgrade ox_lib to 3.27.0 or higher')
 
-    sv_utils.versionCheck("ThatMadCap/minimal-hud")
+    local repName = 'minimal-hud'
+    local resName = GetCurrentResourceName()
+    if resName == repName then
+        local repo = ('thatmadcap/%s'):format(resName)
+        lib.versionCheck(repo)
+    else
+        lib.print.info(('Skipping resource version check (resource renamed to "%s").'):format(resName))
+    end
 end)
