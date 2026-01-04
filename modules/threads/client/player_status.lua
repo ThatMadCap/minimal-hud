@@ -1,8 +1,8 @@
 ---@diagnostic disable: cast-local-type
-local interface = require("modules.interface.client")
-local config = require("config.shared")
-local utility = require("modules.utility.shared.main")
-local sharedFunctions = require("config.functions")
+local interface = lib.require("modules.interface.client")
+local config = lib.require("config.shared")
+local utility = lib.require("modules.utility.shared.main")
+local sharedFunctions = lib.require("config.functions")
 
 local PlayerStatusThread = {}
 PlayerStatusThread.__index = PlayerStatusThread

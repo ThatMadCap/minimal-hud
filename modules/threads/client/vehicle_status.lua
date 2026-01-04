@@ -1,7 +1,7 @@
-local interface = require("modules.interface.client")
-local utility = require("modules.utility.shared.main")
-local functions = require("config.functions")
-local config = require("config.shared")
+local interface = lib.require("modules.interface.client")
+local utility = lib.require("modules.utility.shared.main")
+local functions = lib.require("config.functions")
+local config = lib.require("config.shared")
 
 local VehicleStatusThread = {}
 VehicleStatusThread.__index = VehicleStatusThread

@@ -1,4 +1,4 @@
-local config = require("config.shared")
+local config = lib.require("config.shared")
 
 local SeatbeltLogic = {}
 SeatbeltLogic.__index = SeatbeltLogic

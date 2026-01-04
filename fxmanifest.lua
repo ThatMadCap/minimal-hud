@@ -10,7 +10,6 @@ repository("https://github.com/ThatMadCap/minimal-hud")
 
 shared_scripts({
     "@ox_lib/init.lua",
-    "require.lua",
     "init.lua",
 })
 

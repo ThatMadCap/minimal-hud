@@ -1,5 +1,5 @@
 local utility = {}
-local config = require("config.shared")
+local config = lib.require("config.shared")
 
 ---@param value number
 ---@return number

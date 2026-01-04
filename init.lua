@@ -1,15 +1,15 @@
 if not IsDuplicityVersion() then
-    local config = require("config.shared")
-    local playerStatusClass = require("modules.threads.client.player_status")
-    local vehicleStatusClass = require("modules.threads.client.vehicle_status")
-    local seatbeltLogicClass = require("modules.seatbelt.client")
-    local utility = require("modules.utility.shared.main")
-    local interface = require("modules.interface.client")
+    local config = lib.require("config.shared")
+    local playerStatusClass = lib.require("modules.threads.client.player_status")
+    local vehicleStatusClass = lib.require("modules.threads.client.vehicle_status")
+    local seatbeltLogicClass = lib.require("modules.seatbelt.client")
+    local utility = lib.require("modules.utility.shared.main")
+    local interface = lib.require("modules.interface.client")
 
     local seatbeltLogic = seatbeltLogicClass.new()
     local playerStatusThread = playerStatusClass.new()
     local vehicleStatusThread = vehicleStatusClass.new(playerStatusThread, seatbeltLogic)
-    local framework = utility.isFrameworkValid() and require("modules.frameworks." .. config.framework:lower()).new() or false
+    local framework = utility.isFrameworkValid() and lib.require("modules.frameworks." .. config.framework:lower()).new() or false
 
     playerStatusThread:start(vehicleStatusThread, seatbeltLogic, framework)
 
@@ -66,7 +66,7 @@ if not IsDuplicityVersion() then
     return
 end
 
-local sv_utils = require("modules.utility.server.main")
+local sv_utils = lib.require("modules.utility.server.main")
 
 CreateThread(function()
     if not sv_utils.isInterfaceCompiled() then
