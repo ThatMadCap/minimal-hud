@@ -57,7 +57,7 @@ jobs:
                   ls
                   mkdir -p ./temp/minimal-hud
                   mkdir -p ./temp/minimal-hud/web/
-                  cp ./{LICENSE,README.md,fxmanifest.lua,require.lua,init.lua} ./temp/minimal-hud
+                  cp ./{LICENSE,README.md,fxmanifest.lua,init.lua} ./temp/minimal-hud
                   cp -r ./{config,modules,stream} ./temp/minimal-hud
                   cp -r ./dist ./temp/minimal-hud/
                   find ./temp -type d -empty -delete
