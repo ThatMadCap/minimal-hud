@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "jotai": "~2.9.3",
-    "preact": "^10.25.4",
+    "preact": "^10.26.3",
     "react": "npm:@preact/compat",
     "react-dom": "npm:@preact/compat",
     "react-icons": "^5.4.0",
